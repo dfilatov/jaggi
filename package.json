@@ -1,0 +1,24 @@
+{
+    "name" : "jaggi",
+    "version" : "0.0.1",
+    "description" : "aggregator",
+    "homepage" : "https://github.com/dfilatov/jaggi",
+    "keywords" : [],
+    "author" : "Dmitry Filatov <dfilatov@yandex-team.ru>",
+    "contributors" : [{
+        "name"  : "Dmitry Filatov",
+        "email" : "dfilatov@yandex-team.ru"
+    }],
+    "repository":{
+        "type" : "git",
+        "url"  : "http://github.com/dfilatov/jaggi.git"
+    },
+    "dependencies": {
+        "q"       : ">= 0.7.1",
+        "inherit" : ">= 1.0.0",
+        "express" : ">= 2.5.0"
+    },
+    "devDependencies": {},
+    "main" : "index",
+    "engines" : { "node" : ">= 0.4.0" }
+}
