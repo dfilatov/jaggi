@@ -1,5 +1,7 @@
 module.exports = {
 
+    output : 'json',
+
     blocks : [
         {
             id      : 'first',
