@@ -1,19 +1,17 @@
 module.exports = {
 
-    output : 'json',
-
     blocks : [
         {
             id      : 'first',
             timeout : 5000,
             params  : function(ctx) {
-                return { a : 'first', b : ctx.req().param('b') };
+                return { a : 'first', b : ctx.request().param('b') };
             },
             content : function(defer, params) {
                 defer.resolve(params);
             },
             after : function(ctx) {
-                ctx.param('test', 'val');
+                ctx.state().param('test', 'val');
                 //return false;
             }
         },
@@ -25,30 +23,32 @@ module.exports = {
         },
         {
             content : 'http',
-            params : {
-                method   : 'POST',
-                url      : 'http://n.maps.yandex.ru/actions/get-geoobject.xml',
-                dataType : 'json',
-                data     : { id : 614884 }
+            params : function(ctx) {
+                return {
+                    method   : 'POST',
+                    url      : ctx.config().hosts.nmaps + '/actions/get-geoobject.xml',
+                    dataType : 'json',
+                    data     : { id : 614884 }
+                };
             }
         },
         {
             depend : ['first'],
             params : function(ctx) {
-                return { test : ctx.param('test') };
+                return { test : ctx.state().param('test') };
             },
             content : [
                 {
                     params : function(ctx) {
-                        return { test : ctx.param('test'), test2 : ctx.req().param('b') };
+                        return {
+                            test : ctx.state().param('test'),
+                            test2 : ctx.request().param('b')
+                        };
                     },
                     content : function(defer, params) {
                         defer.resolve(params);
                     }
-                }/*,
-                {
-                    content : 'http'
-                }*/
+                }
             ]
         }
     ]
