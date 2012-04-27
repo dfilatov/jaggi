@@ -3,12 +3,14 @@ module.exports = {
     blocks : [
         {
             id      : 'first',
-            timeout : 5000,
+            timeout : 1000,
             params  : function(ctx) {
                 return { a : 'first', b : ctx.request().param('b') };
             },
             content : function(defer, params) {
-                defer.resolve(params);
+                setTimeout(function() {
+                    defer.resolve(params);
+                }, 200);
             },
             after : function(ctx) {
                 ctx.state().param('test', 'val');
@@ -25,7 +27,7 @@ module.exports = {
             content : 'http',
             params : function(ctx) {
                 return {
-                    method   : 'POST',
+                    method   : 'GET',
                     url      : ctx.config().hosts.nmaps + '/actions/get-geoobject.xml',
                     dataType : 'json',
                     data     : { id : 614884 }
