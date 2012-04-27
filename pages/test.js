@@ -1,29 +1,29 @@
 module.exports = {
 
-    blocks : [
-        {
-            id      : 'first',
+    blocks : {
+        'first' : {
             timeout : 1000,
             params  : function(ctx) {
                 return { a : 'first', b : ctx.request().param('b') };
             },
             content : function(defer, params) {
-                setTimeout(function() {
-                    defer.resolve(params);
-                }, 200);
+                defer.resolve(params);
             },
             after : function(ctx) {
                 ctx.state().param('test', 'val');
                 //return false;
             }
         },
-        {
-            depend : ['first'],
-            content : function(defer) {
-                defer.resolve('second');
+        'second' : {
+            deps : ['first'],
+            params : function(ctx) {
+                return { test : ctx.state().param('test') };
+            },
+            content : function(defer, params) {
+                defer.resolve(params.test);
             }
         },
-        {
+        'http' : {
             content : 'http',
             params : function(ctx) {
                 return {
@@ -34,13 +34,13 @@ module.exports = {
                 };
             }
         },
-        {
-            depend : ['first'],
+        'nested' : {
+            deps : ['first', 'http'],
             params : function(ctx) {
                 return { test : ctx.state().param('test') };
             },
-            content : [
-                {
+            content : {
+                'inner' : {
                     params : function(ctx) {
                         return {
                             test : ctx.state().param('test'),
@@ -51,8 +51,8 @@ module.exports = {
                         defer.resolve(params);
                     }
                 }
-            ]
+            }
         }
-    ]
+    }
 
 };
