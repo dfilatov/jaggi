@@ -1,6 +1,15 @@
 module.exports = {
 
     blocks : {
+        'second' : {
+            deps : ['first'],
+            params : function(ctx) {
+                return { test : ctx.state().param('test') };
+            },
+            content : function(defer, params) {
+                defer.resolve(params.test);
+            }
+        },
         'first' : {
             timeout : 1000,
             params  : function(ctx) {
@@ -12,15 +21,6 @@ module.exports = {
             after : function(ctx) {
                 ctx.state().param('test', 'val');
                 //return false;
-            }
-        },
-        'second' : {
-            deps : ['first'],
-            params : function(ctx) {
-                return { test : ctx.state().param('test') };
-            },
-            content : function(defer, params) {
-                defer.resolve(params.test);
             }
         },
         'http' : {
@@ -51,6 +51,11 @@ module.exports = {
                         defer.resolve(params);
                     }
                 }
+            }
+        },
+        'static' : {
+            content : function(defer) {
+                defer.resolve({ staticData : true });
             }
         }
     }
