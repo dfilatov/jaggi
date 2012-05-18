@@ -14,7 +14,7 @@
         "url"  : "http://github.com/dfilatov/jaggi.git"
     },
     "dependencies": {
-        "q"       : ">= 0.8.2",
+        "q"       : ">= 0.8.5",
         "inherit" : ">= 1.0.4",
         "express" : ">= 2.5.0"
     },
