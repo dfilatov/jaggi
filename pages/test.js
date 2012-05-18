@@ -53,6 +53,25 @@ module.exports = {
                 }
             }
         },
+        'dynamic' : {
+            timeout : 4000,
+            deps    : ['nested'],
+            params  : { dyna : [1, 2, 3], dynaParam : 'dyna-param-test' },
+            content : function(_, params) {
+                var res = {};
+                params.dyna.forEach(function(i) {
+                    res['dyna' + i] = {
+                        params : function(ctx) {
+                            return ctx.state().params();
+                        },
+                        content : function(defer, params) {
+                            defer.resolve(['dyna' + i + '-content', params.dynaParam]);
+                        }
+                    };
+                });
+                return res;
+            }
+        },
         'static' : {
             content : function(defer) {
                 defer.resolve({ staticData : true });
