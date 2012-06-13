@@ -19,6 +19,6 @@
         "express" : ">= 2.5.0"
     },
     "devDependencies": {},
-    "main" : "index",
+    "main" : "lib/jaggi",
     "engines" : { "node" : ">= 0.4.0" }
 }
