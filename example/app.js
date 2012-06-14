@@ -1,4 +1,5 @@
 var server = require('../index').createServer({
-        port   : 3000,
-        routes : require('./routes')
+        rootDir : __dirname,
+        port    : 3000,
+        routes  : require('./routes')
     });
