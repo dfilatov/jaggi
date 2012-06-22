@@ -6,8 +6,8 @@ module.exports = {
             params : function(ctx) {
                 return { test : ctx.state().param('test') };
             },
-            content : function(defer) {
-                defer.resolve(this.params.test);
+            content : function(params, defer) {
+                defer.resolve(params.test);
             }
         },
         'first' : {
@@ -15,8 +15,8 @@ module.exports = {
             params  : function(ctx) {
                 return { a : 'first', b : ctx.request().param('b') };
             },
-            content : function(defer) {
-                defer.resolve(this.params);
+            content : function(params, defer) {
+                defer.resolve(params);
             },
             after : function(ctx) {
                 ctx.state().param('test', 'val');
@@ -47,8 +47,8 @@ module.exports = {
                             test2 : ctx.request().param('b')
                         };
                     },
-                    content : function(defer) {
-                        defer.resolve(this.params);
+                    content : function(params, defer) {
+                        defer.resolve(params);
                     }
                 }
             }
@@ -64,8 +64,8 @@ module.exports = {
                         params : function(ctx) {
                             return ctx.state().params();
                         },
-                        content : function(defer) {
-                            defer.resolve(['dyna' + i + '-content', this.params.dynaParam]);
+                        content : function(params, defer) {
+                            defer.resolve(['dyna' + i + '-content', params.dynaParam]);
                         }
                     };
                 });
@@ -73,8 +73,24 @@ module.exports = {
             }
         },
         'static' : {
-            content : function(defer) {
+            content : function(_, defer) {
                 defer.resolve({ staticData : true });
+            }
+        },
+         'auth' : {
+            content : 'http',
+            params : function(ctx) {
+                return {
+                    url  : 'http://blackbox-mimino.yandex.net/blackbox/',
+                    data : {
+                        method    : 'session',
+                        host      : 'yandex.ru',
+                        sessionid : ctx.request().cookies['session_id'],
+                        userip    : ctx.request().headers['x-forwarded-for'],
+                        regname   : 'yes',
+                        format    : 'json'
+                    }
+                };
             }
         }
     }
