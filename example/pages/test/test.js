@@ -92,7 +92,13 @@ module.exports = {
                     }
                 };
             }
-        }
+        }/*,
+        'redir' : {
+            content : 'http',
+            params : function(ctx) {
+                return { url : 'http://alexa.maps.dev.yandex.ru:3001/r/?a=1', dataType : 'string' };
+            }
+        }*/
     }
 
 };
