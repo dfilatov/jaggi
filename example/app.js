@@ -1,7 +1,7 @@
-var express = require('express'),
+var path = require('path'),
+    express = require('express'),
     server = express.createServer(),
-    rootPath = __dirname + '/',
-    cfg = require(rootPath + 'configs/' + server.settings.env),
+    cfg = require(path.join(__dirname, 'configs', server.settings.env)),
     jaggi = require('../index');
 
 server.configure(function() {
@@ -14,7 +14,7 @@ server.configure(function() {
 require('./routes').forEach(function(rule) {
     server[rule.method? rule.method.toLowerCase() : 'get'](rule.request, function(req, resp) {
         jaggi.run(
-            require(rootPath + rule.response).blocks,
+            require(path.join(__dirname, rule.response)).blocks,
             {
                 config   : cfg,
                 request  : req,
