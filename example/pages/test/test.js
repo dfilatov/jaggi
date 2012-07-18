@@ -57,9 +57,9 @@ module.exports = {
             timeout : 4000,
             deps    : ['nested'],
             params  : { dyna : [1, 2, 3], dynaParam : 'dyna-param-test' },
-            content : function() {
+            content : function(params) {
                 var res = {};
-                this.params.dyna.forEach(function(i) {
+                params.dyna.forEach(function(i) {
                     res['dyna' + i] = {
                         params : function(ctx) {
                             return ctx.state().params();
