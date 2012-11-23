@@ -18,7 +18,13 @@
         "inherit" : "1.0.4",
         "jspath"  : ""
     },
-    "devDependencies": {},
+    "devDependencies": {
+        "nodeunit" : "",
+        "istanbul" : ""
+    },
     "main" : "index",
-    "engines" : { "node" : ">= 0.4.0" }
+    "engines" : { "node" : ">= 0.4.0" },
+    "scripts" : {
+        "test" : "./node_modules/istanbul/lib/cli.js test test.js"
+    }
 }
