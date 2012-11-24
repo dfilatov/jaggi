@@ -12,7 +12,7 @@ module.exports = {
         'tweets' : {
             deps : 'trends',
             params : function(ctx) {
-                return { trends : ctx.state().param('trends') };
+                return { trends : ctx.state('trends') };
             },
             call : function(params) {
                 var subBlocks = {};
