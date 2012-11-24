@@ -16,12 +16,11 @@ require('./routes').forEach(function(rule) {
         jaggi.run(
             require(path.join(__dirname, rule.response)).blocks,
             {
-                config   : cfg,
                 request  : req,
                 response : resp
             })
                 .then(function(res) {
-                    resp.send(JSON.stringify(res));
+                    resp.send('<pre>' + JSON.stringify(res, null, 4) + '</pre>');
                 });
     });
 });

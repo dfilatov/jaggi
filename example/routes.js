@@ -1,3 +1,3 @@
 module.exports = [
-    { request : '/test/', response : 'pages/test/test.js' }
+    { request : '/', response : 'pages/tweets/tweets.js' }
 ];
