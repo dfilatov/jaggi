@@ -5,7 +5,11 @@ module.exports = {
                 url : 'https://api.twitter.com/1/trends/1.json'
             },
             call : 'http',
-            state : { trends : '.trends[:3]' },
+            state : function(_, ctx) {
+                return {
+                    trends : '.trends[:' + (ctx.request('limit') || 3)  + ']'
+                };
+            },
             done : false
         },
 
