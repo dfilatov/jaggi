@@ -15,6 +15,7 @@ module.exports = {
 
         'tweets' : {
             deps : 'trends',
+            guard : 'trends',
             params : function(ctx) {
                 return { trends : ctx.state('trends') };
             },

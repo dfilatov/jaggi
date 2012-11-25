@@ -2,6 +2,7 @@ var path = require('path'),
     express = require('express'),
     server = express.createServer(),
     cfg = require(path.join(__dirname, 'configs', server.settings.env)),
+    PageContext = require('./PageContext'),
     jaggi = require('../index');
 
 server.configure(function() {
@@ -18,6 +19,11 @@ require('./routes').forEach(function(rule) {
             {
                 request  : req,
                 response : resp
+            },
+            {
+                contextFactory : function(params) {
+                    return new PageContext(params);
+                }
             })
                 .then(function(res) {
                     resp.send('<pre>' + JSON.stringify(res, null, 4) + '</pre>');
