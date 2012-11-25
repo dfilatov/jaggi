@@ -55,7 +55,7 @@ module.exports = {
             {
                 root : path.join(__dirname, 'blocks')
             }).then(function(res) {
-                test.deepEqual(res, { A : { error : { message : 'Cannot find module \'/home/dfilatov/www/jaggi/test/blocks/no-exists.js\'' }}});
+                test.ok(res.A.error.message.indexOf('Cannot find module') > -1);
                 test.done();
             });
     }

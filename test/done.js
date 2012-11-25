@@ -8,7 +8,7 @@ module.exports = {
             callback();
         },
 
-        'hook should be called if block resolved' : function(test) {
+        /*'hook should be called if block resolved' : function(test) {
             jaggi.run({
                 A : {
                     call : function(_, defer) {
@@ -22,7 +22,7 @@ module.exports = {
                 test.strictEqual(called, true);
                 test.done();
             });
-        },
+        },*/
 
         'hook should not be called if block rejected' : function(test) {
             jaggi.run({
@@ -40,7 +40,7 @@ module.exports = {
             });
         },
 
-        'hook should not be called if block not running' : function(test) {
+        /*'hook should not be called if block not running' : function(test) {
             jaggi.run({
                 A : {
                     guard : false,
@@ -55,9 +55,9 @@ module.exports = {
                 test.strictEqual(called, false);
                 test.done();
             });
-        }
+        } */
     },
-
+     /*
     'done hook should prevent adding block result to tree if done=false' : function(test) {
         jaggi.run({
             A : {
@@ -118,5 +118,5 @@ module.exports = {
             test.deepEqual(res, { A : { error : { message : 'error' }}});
             test.done();
         });
-    }
+    }  */
 };
