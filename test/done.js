@@ -9,7 +9,7 @@ module.exports = {
         },
 
         /*'hook should be called if block resolved' : function(test) {
-            jaggi.run({
+            jaggi.create({
                 A : {
                     call : function(_, defer) {
                         defer.resolve();
@@ -18,14 +18,14 @@ module.exports = {
                         called = true;
                     }
                 }
-            }).fin(function() {
+            }).run().fin(function() {
                 test.strictEqual(called, true);
                 test.done();
             });
         },*/
 
         'hook should not be called if block rejected' : function(test) {
-            jaggi.run({
+            jaggi.create({
                 A : {
                     call : function(_, defer) {
                         defer.reject();
@@ -34,7 +34,7 @@ module.exports = {
                         called = true;
                     }
                 }
-            }).fin(function() {
+            }).run().fin(function() {
                 test.strictEqual(called, false);
                 test.done();
             });
