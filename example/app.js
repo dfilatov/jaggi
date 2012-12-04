@@ -1,19 +1,10 @@
 var path = require('path'),
-    express = require('express'),
-    server = express.createServer(),
-    cfg = require(path.join(__dirname, 'configs', server.settings.env)),
+    app = require('express')(),
     PageContext = require('./page-context'),
     jaggi = require('../index');
 
-server.configure(function() {
-    server.use(express.profiler());
-    server.use(express.bodyParser());
-    server.use(express.cookieParser());
-    server.use(express.methodOverride());
-});
-
 require('./routes').forEach(function(rule) {
-    server[rule.method? rule.method.toLowerCase() : 'get'](rule.request, function(req, resp) {
+    app[rule.method? rule.method.toLowerCase() : 'get'](rule.request, function(req, resp) {
         var runner = jaggi.create(
                 require(path.join(__dirname, rule.response)).blocks,
                 {
@@ -36,7 +27,6 @@ require('./routes').forEach(function(rule) {
     });
 });
 
-server.listen(3000, function() {
-    var addr = server.address();
-    console.log('server started at ' + addr.address + ':' + addr.port);
+app.listen(3000, function() {
+    console.log('app started');
 });
