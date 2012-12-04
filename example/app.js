@@ -27,11 +27,8 @@ require('./routes').forEach(function(rule) {
                 });
 
         runner
-            .on('block-done', function(meta) {
-                console.log('block done', meta);
-            })
-            .on('block-failed', function(meta, error) {
-                console.log('block failed', meta, error);
+            .on('block-event', function(event, data) {
+                console.log('block ' + event.type, event.meta.id, data || '');
             })
             .run().then(function(res) {
                 resp.send('<pre>' + JSON.stringify(res, null, 4) + '</pre>');
