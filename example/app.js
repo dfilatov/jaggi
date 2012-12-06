@@ -19,10 +19,10 @@ require('./routes').forEach(function(rule) {
                 });
 
         runner
-            .on('block-event', function(event, data) {
+            .on('block-event', function(event, error) {
                 console.log(
                     util.format('block %s %s', event.meta.id, event.type),
-                    (data && data.message) || '');
+                    (error && '-> ' + error.message) || '');
             })
             .run().then(function(res) {
                 resp.send('<pre>' + JSON.stringify(res, null, 4) + '</pre>');
