@@ -1,10 +1,7 @@
 module.exports = {
     blocks : {
         'trends' : {
-            params : {
-                url : 'https://api.twitter.com/1/trends/1.json'
-            },
-            call : 'http',
+            include : 'includes/trends.js',
             toState : function(_, ctx) {
                 return {
                     trends : '.trends[:' + (ctx.request('limit') || 3)  + ']'
@@ -16,7 +13,7 @@ module.exports = {
         'tweets' : {
             deps : 'trends',
             guard : 'trends',
-            timeout : 10000,
+            timeout : 1000,
             params : function(ctx) {
                 return { trends : ctx.state('trends') };
             },
@@ -24,11 +21,12 @@ module.exports = {
                 var subBlocks = {};
                 params.trends.forEach(function(trend) {
                     subBlocks[trend.name] = {
-                        params : {
-                            url  : 'http://search.twitter.com/search.json',
-                            data : { q : trend.query }
+                        include : 'includes/tweets.js',
+                        params : function() {
+                            var res = this.__base();
+                            res.data = { q : trend.query };
+                            return res;
                         },
-                        call : 'http',
                         pointer : '.results[:3].text'
                     }
                 });

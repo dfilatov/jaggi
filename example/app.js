@@ -13,6 +13,7 @@ require('./routes').forEach(function(rule) {
                     response : resp
                 },
                 {
+                    root           : path.join(__dirname, 'blocks'),
                     contextFactory : function(params) {
                         return new PageContext(params);
                     }
