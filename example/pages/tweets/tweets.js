@@ -16,6 +16,7 @@ module.exports = {
         'tweets' : {
             deps : 'trends',
             guard : 'trends',
+            timeout : 10000,
             params : function(ctx) {
                 return { trends : ctx.state('trends') };
             },
