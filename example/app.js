@@ -1,7 +1,8 @@
 var path = require('path'),
     app = require('express')(),
     PageContext = require('./page-context'),
-    jaggi = require('../index');
+    jaggi = require('../index'),
+    util = require('util');
 
 require('./routes').forEach(function(rule) {
     app[rule.method? rule.method.toLowerCase() : 'get'](rule.request, function(req, resp) {
@@ -19,7 +20,9 @@ require('./routes').forEach(function(rule) {
 
         runner
             .on('block-event', function(event, data) {
-                console.log('block ' + event.type, event.meta.id, (data && data.message) || '');
+                console.log(
+                    util.format('block %s %s', event.meta.id, event.type),
+                    (data && data.message) || '');
             })
             .run().then(function(res) {
                 resp.send('<pre>' + JSON.stringify(res, null, 4) + '</pre>');
