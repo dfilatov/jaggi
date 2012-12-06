@@ -1,0 +1,17 @@
+{
+    "name" : "jaggi-express",
+    "version" : "0.0.0",
+    "author" : "Dmitry Filatov <dfilatov@yandex-team.ru>",
+    "contributors" : [{
+        "name"  : "Dmitry Filatov",
+        "email" : "dfilatov@yandex-team.ru"
+    }],
+    "repository":{
+        "type" : "git",
+        "url"  : "http://github.com/dfilatov/jaggi.git"
+    },
+    "dependencies": {
+        "express" : "3.0.x"
+    },
+    "engines" : { "node" : ">= 0.6.0" }
+}
