@@ -14,9 +14,9 @@
         "url"  : "http://github.com/dfilatov/jaggi.git"
     },
     "dependencies": {
-        "q"       : "0.8.11",
-        "inherit" : "1.0.4",
-        "jspath"  : ""
+        "inherit"   : "1.0.4",
+        "jspromise" : "",
+        "jspath"    : ""
     },
     "devDependencies": {
         "nodeunit" : "",
