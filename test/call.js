@@ -3,10 +3,13 @@ var jaggi = require('../lib/jaggi'),
 
 module.exports = {
     'block should produce result' : function(test) {
-        jaggi.create({
-                A : {
-                    call : function(_, promise) {
-                        promise.resolve('result');
+        jaggi.create(
+            {
+                call : {
+                    A : {
+                        call : function(_, promise) {
+                            promise.resolve('result');
+                        }
                     }
                 }
             }).run().then(function(res) {
@@ -16,10 +19,13 @@ module.exports = {
     },
 
     'block should produce complex result' : function(test) {
-        jaggi.create({
-                A : {
-                    call : function(_, promise) {
-                        promise.resolve({ a : { b : { c : true }}});
+        jaggi.create(
+            {
+                call : {
+                    A : {
+                        call : function(_, promise) {
+                            promise.resolve({ a : { b : { c : true }}});
+                        }
                     }
                 }
             }).run().then(function(res) {
@@ -31,8 +37,10 @@ module.exports = {
     'block should call user-defined block' : function(test) {
         jaggi.create(
             {
-                A : {
-                    call : 'simple-resolve.js'
+                call : {
+                    A : {
+                        call : 'simple-resolve.js'
+                    }
                 }
             },
             null,
@@ -47,8 +55,10 @@ module.exports = {
     'block should produce error if user-defined block no exists' : function(test) {
         jaggi.create(
             {
-                A : {
-                    call : 'no-exists.js'
+                call : {
+                    A : {
+                        call : 'no-exists.js'
+                    }
                 }
             },
             null,

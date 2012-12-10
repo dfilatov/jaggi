@@ -4,6 +4,7 @@ var jaggi = require('../lib/jaggi'),
 module.exports = {
     'block should produce nested block' : function(test) {
         jaggi.create({
+            call : {
                 A : {
                     call : {
                         'A-1' : {
@@ -22,7 +23,7 @@ module.exports = {
                         }
                     }
                 }
-            }).run().then(function(res) {
+            }}).run().then(function(res) {
                 test.deepEqual(
                     res,
                     {
@@ -41,6 +42,7 @@ module.exports = {
 
     'block should produce nested block in call' : function(test) {
         jaggi.create({
+            call : {
                 A : {
                     call : function() {
                         return {
@@ -63,7 +65,7 @@ module.exports = {
                         };
                     }
                 }
-            }).run().then(function(res) {
+            }}).run().then(function(res) {
                 test.deepEqual(
                     res,
                     {

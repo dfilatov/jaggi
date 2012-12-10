@@ -9,23 +9,25 @@ module.exports = {
 
     'nested block should have new state' : function(test) {
         jaggi.create({
-            A : {
-                call : function(_, promise) {
-                    promise.resolve('A done');
+            call : {
+                A : {
+                    call : function(_, promise) {
+                        promise.resolve('A done');
+                    },
+                    toState : {
+                        'A-1-res' : '.'
+                    }
                 },
-                toState : {
-                    'A-1-res' : '.'
-                }
-            },
 
-            B : {
-                call : {
-                    'B-1' : {
-                        params : function(ctx) {
-                            stateParams = ctx.state().params();
-                        },
-                        call : function(_, promise) {
-                            promise.resolve('B-1 done');
+                B : {
+                    call : {
+                        'B-1' : {
+                            params : function(ctx) {
+                                stateParams = ctx.state().params();
+                            },
+                            call : function(_, promise) {
+                                promise.resolve('B-1 done');
+                            }
                         }
                     }
                 }
@@ -38,24 +40,26 @@ module.exports = {
 
     'nested block should have parent state if proxyState=true' : function(test) {
         jaggi.create({
-            A : {
-                call : function(_, promise) {
-                    promise.resolve('A done');
+            call : {
+                A : {
+                    call : function(_, promise) {
+                        promise.resolve('A done');
+                    },
+                    toState : {
+                        'A-1-res' : '.'
+                    }
                 },
-                toState : {
-                    'A-1-res' : '.'
-                }
-            },
 
-            B : {
-                proxyState : true,
-                call : {
-                    'B-1' : {
-                        params : function(ctx) {
-                            stateParams = ctx.state().params();
-                        },
-                        call : function(_, promise) {
-                            promise.resolve('B-1 done');
+                B : {
+                    proxyState : true,
+                    call : {
+                        'B-1' : {
+                            params : function(ctx) {
+                                stateParams = ctx.state().params();
+                            },
+                            call : function(_, promise) {
+                                promise.resolve('B-1 done');
+                            }
                         }
                     }
                 }

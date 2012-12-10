@@ -10,12 +10,14 @@ module.exports = {
 
         'hook should be called if block resolved' : function(test) {
             jaggi.create({
-                A : {
-                    call : function(_, promise) {
-                        promise.resolve();
-                    },
-                    done : function() {
-                        called = true;
+                call : {
+                    A : {
+                        call : function(_, promise) {
+                            promise.resolve();
+                        },
+                        done : function() {
+                            called = true;
+                        }
                     }
                 }
             }).run().then(function() {
@@ -26,12 +28,14 @@ module.exports = {
 
         'hook should not be called if block rejected' : function(test) {
             jaggi.create({
-                A : {
-                    call : function(_, promise) {
-                        promise.reject();
-                    },
-                    done : function() {
-                        called = true;
+                call : {
+                    A : {
+                        call : function(_, promise) {
+                            promise.reject();
+                        },
+                        done : function() {
+                            called = true;
+                        }
                     }
                 }
             }).run().then(function() {
@@ -42,13 +46,15 @@ module.exports = {
 
         'hook should not be called if block not running' : function(test) {
             jaggi.create({
-                A : {
-                    guard : false,
-                    call : function(_, promise) {
-                        promise.resolve();
-                    },
-                    done : function() {
-                        called = true;
+                call : {
+                    A : {
+                        guard : false,
+                        call : function(_, promise) {
+                            promise.resolve();
+                        },
+                        done : function() {
+                            called = true;
+                        }
                     }
                 }
             }).run().then(function() {
@@ -60,11 +66,13 @@ module.exports = {
 
     'done hook should prevent adding block result to tree if done=false' : function(test) {
         jaggi.create({
-            A : {
-                call : function(_, promise) {
-                    promise.resolve({ ok : true });
-                },
-                done : false
+            call : {
+                A : {
+                    call : function(_, promise) {
+                        promise.resolve({ ok : true });
+                    },
+                    done : false
+                }
             }
         }).run().then(function(res) {
             test.deepEqual(res, {});
@@ -74,12 +82,14 @@ module.exports = {
 
     'done hook should prevent adding block result to tree if return false' : function(test) {
         jaggi.create({
-            A : {
-                call : function(_, promise) {
-                    promise.resolve({ ok : true });
-                },
-                done : function(_, _, promise) {
-                    return false;
+            call : {
+                A : {
+                    call : function(_, promise) {
+                        promise.resolve({ ok : true });
+                    },
+                    done : function(_, _, promise) {
+                        return false;
+                    }
                 }
             }
         }).run().then(function(res) {
@@ -90,12 +100,14 @@ module.exports = {
 
     'done hook can modify block result' : function(test) {
         jaggi.create({
-            A : {
-                call : function(_, promise) {
-                    promise.resolve({ ok : true });
-                },
-                done : function(res, _, promise) {
-                    promise.resolve({ ok : false });
+            call : {
+                A : {
+                    call : function(_, promise) {
+                        promise.resolve({ ok : true });
+                    },
+                    done : function(res, _, promise) {
+                        promise.resolve({ ok : false });
+                    }
                 }
             }
         }).run().then(function(res) {
@@ -106,12 +118,14 @@ module.exports = {
 
     'done hook can reject block' : function(test) {
         jaggi.create({
-            A : {
-                call : function(_, promise) {
-                    promise.resolve('ok');
-                },
-                done : function(_, _, promise) {
-                    promise.reject('error');
+            call : {
+                A : {
+                    call : function(_, promise) {
+                        promise.resolve('ok');
+                    },
+                    done : function(_, _, promise) {
+                        promise.reject('error');
+                    }
                 }
             }
         }).run().then(function(res) {
