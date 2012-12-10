@@ -9,15 +9,15 @@ module.exports = {
                         'A-1' : {
                             call : {
                                 'A-1-1' : {
-                                    call : function(_, defer) {
-                                        defer.resolve('A-1-1-result');
+                                    call : function(_, promise) {
+                                        promise.resolve('A-1-1-result');
                                     }
                                 }
                             }
                         },
                         'A-2' : {
-                            call : function(_, defer) {
-                                defer.reject('A-2-error');
+                            call : function(_, promise) {
+                                promise.reject('A-2-error');
                             }
                         }
                     }
@@ -48,16 +48,16 @@ module.exports = {
                                 call : function() {
                                     return {
                                         'A-1-1' : {
-                                            call : function(_, defer) {
-                                                defer.resolve('A-1-1-result');
+                                            call : function(_, promise) {
+                                                promise.resolve('A-1-1-result');
                                             }
                                         }
                                     };
                                 }
                             },
                             'A-2' : {
-                                call : function(_, defer) {
-                                    defer.reject('A-2-error');
+                                call : function(_, promise) {
+                                    promise.reject('A-2-error');
                                 }
                             }
                         };

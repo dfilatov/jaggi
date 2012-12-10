@@ -15,7 +15,7 @@ module.exports = {
                     called = true;
                 }
             }
-        }).run().fin(function() {
+        }).run().then(function() {
             test.strictEqual(called, false);
             test.done();
         });
@@ -31,7 +31,7 @@ module.exports = {
                     called = true;
                 }
             }
-        }).run().fin(function() {
+        }).run().then(function() {
             test.strictEqual(called, false);
             test.done();
         });
@@ -47,7 +47,7 @@ module.exports = {
                     called = true;
                 }
             }
-        }).run().fin(function() {
+        }).run().then(function() {
             test.strictEqual(called, true);
             test.done();
         });
@@ -61,7 +61,7 @@ module.exports = {
                     called = true;
                 }
             }
-        }).run().fin(function() {
+        }).run().then(function() {
             test.strictEqual(called, true);
             test.done();
         });

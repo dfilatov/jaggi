@@ -10,8 +10,8 @@ module.exports = {
     'nested block should have new state' : function(test) {
         jaggi.create({
             A : {
-                call : function(_, defer) {
-                    defer.resolve('A done');
+                call : function(_, promise) {
+                    promise.resolve('A done');
                 },
                 toState : {
                     'A-1-res' : '.'
@@ -24,13 +24,13 @@ module.exports = {
                         params : function(ctx) {
                             stateParams = ctx.state().params();
                         },
-                        call : function(_, defer) {
-                            defer.resolve('B-1 done');
+                        call : function(_, promise) {
+                            promise.resolve('B-1 done');
                         }
                     }
                 }
             }
-        }).run().fin(function() {
+        }).run().then(function() {
             test.deepEqual(stateParams, {});
             test.done();
         });
@@ -39,8 +39,8 @@ module.exports = {
     'nested block should have parent state if proxyState=true' : function(test) {
         jaggi.create({
             A : {
-                call : function(_, defer) {
-                    defer.resolve('A done');
+                call : function(_, promise) {
+                    promise.resolve('A done');
                 },
                 toState : {
                     'A-1-res' : '.'
@@ -54,13 +54,13 @@ module.exports = {
                         params : function(ctx) {
                             stateParams = ctx.state().params();
                         },
-                        call : function(_, defer) {
-                            defer.resolve('B-1 done');
+                        call : function(_, promise) {
+                            promise.resolve('B-1 done');
                         }
                     }
                 }
             }
-        }).run().fin(function() {
+        }).run().then(function() {
             test.deepEqual(stateParams, { 'A-1-res' : ['A done'] });
             test.done();
         });

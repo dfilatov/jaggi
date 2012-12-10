@@ -5,8 +5,8 @@ module.exports = {
     'block should produce result' : function(test) {
         jaggi.create({
                 A : {
-                    call : function(_, defer) {
-                        defer.resolve('result');
+                    call : function(_, promise) {
+                        promise.resolve('result');
                     }
                 }
             }).run().then(function(res) {
@@ -18,8 +18,8 @@ module.exports = {
     'block should produce complex result' : function(test) {
         jaggi.create({
                 A : {
-                    call : function(_, defer) {
-                        defer.resolve({ a : { b : { c : true }}});
+                    call : function(_, promise) {
+                        promise.resolve({ a : { b : { c : true }}});
                     }
                 }
             }).run().then(function(res) {

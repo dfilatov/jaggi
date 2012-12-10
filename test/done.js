@@ -8,115 +8,115 @@ module.exports = {
             callback();
         },
 
-        /*'hook should be called if block resolved' : function(test) {
+        'hook should be called if block resolved' : function(test) {
             jaggi.create({
                 A : {
-                    call : function(_, defer) {
-                        defer.resolve();
+                    call : function(_, promise) {
+                        promise.resolve();
                     },
                     done : function() {
                         called = true;
                     }
                 }
-            }).run().fin(function() {
-                test.strictEqual(called, true);
-                test.done();
-            });
-        },*/
-
-        'hook should not be called if block rejected' : function(test) {
-            jaggi.create({
-                A : {
-                    call : function(_, defer) {
-                        defer.reject();
-                    },
-                    done : function() {
-                        called = true;
-                    }
-                }
-            }).run().fin(function() {
-                test.strictEqual(called, false);
+            }).run().then(function() {
+                test.ok(called);
                 test.done();
             });
         },
 
-        /*'hook should not be called if block not running' : function(test) {
-            jaggi.run({
+        'hook should not be called if block rejected' : function(test) {
+            jaggi.create({
                 A : {
-                    guard : false,
-                    call : function(_, defer) {
-                        defer.resolve();
+                    call : function(_, promise) {
+                        promise.reject();
                     },
                     done : function() {
                         called = true;
                     }
                 }
-            }).fin(function() {
-                test.strictEqual(called, false);
+            }).run().then(function() {
+                test.ok(!called);
                 test.done();
             });
-        } */
+        },
+
+        'hook should not be called if block not running' : function(test) {
+            jaggi.create({
+                A : {
+                    guard : false,
+                    call : function(_, promise) {
+                        promise.resolve();
+                    },
+                    done : function() {
+                        called = true;
+                    }
+                }
+            }).run().then(function() {
+                test.ok(!called);
+                test.done();
+            });
+        }
     },
-     /*
+
     'done hook should prevent adding block result to tree if done=false' : function(test) {
-        jaggi.run({
+        jaggi.create({
             A : {
-                call : function(_, defer) {
-                    defer.resolve({ ok : true });
+                call : function(_, promise) {
+                    promise.resolve({ ok : true });
                 },
                 done : false
             }
-        }).then(function(res) {
+        }).run().then(function(res) {
             test.deepEqual(res, {});
             test.done();
         });
     },
 
     'done hook should prevent adding block result to tree if return false' : function(test) {
-        jaggi.run({
+        jaggi.create({
             A : {
-                call : function(_, defer) {
-                    defer.resolve({ ok : true });
+                call : function(_, promise) {
+                    promise.resolve({ ok : true });
                 },
-                done : function(_, _, defer) {
+                done : function(_, _, promise) {
                     return false;
                 }
             }
-        }).then(function(res) {
+        }).run().then(function(res) {
             test.deepEqual(res, {});
             test.done();
         });
     },
 
     'done hook can modify block result' : function(test) {
-        jaggi.run({
+        jaggi.create({
             A : {
-                call : function(_, defer) {
-                    defer.resolve({ ok : true });
+                call : function(_, promise) {
+                    promise.resolve({ ok : true });
                 },
-                done : function(res, _, defer) {
-                    defer.resolve({ ok : false });
+                done : function(res, _, promise) {
+                    promise.resolve({ ok : false });
                 }
             }
-        }).then(function(res) {
+        }).run().then(function(res) {
             test.deepEqual(res, { A : { ok : false }});
             test.done();
         });
     },
 
     'done hook can reject block' : function(test) {
-        jaggi.run({
+        jaggi.create({
             A : {
-                call : function(_, defer) {
-                    defer.resolve('ok');
+                call : function(_, promise) {
+                    promise.resolve('ok');
                 },
-                done : function(_, _, defer) {
-                    defer.reject('error');
+                done : function(_, _, promise) {
+                    promise.reject('error');
                 }
             }
-        }).then(function(res) {
+        }).run().then(function(res) {
             test.deepEqual(res, { A : { error : { message : 'error' }}});
             test.done();
         });
-    }  */
+    }
 };
