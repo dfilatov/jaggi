@@ -1,9 +1,9 @@
 {
     "name" : "jaggi",
-    "version" : "0.0.7",
+    "version" : "0.0.8",
     "description" : "aggregator",
     "homepage" : "https://github.com/dfilatov/jaggi",
-    "keywords" : [],
+    "keywords" : ["aggregator"],
     "author" : "Dmitry Filatov <dfilatov@yandex-team.ru>",
     "contributors" : [{
         "name"  : "Dmitry Filatov",
@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "inherit"   : "1.0.4",
-        "jspromise" : "",
+        "jspromise" : "0.0.4",
         "jspath"    : ""
     },
     "devDependencies": {
