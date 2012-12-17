@@ -11,7 +11,7 @@ module.exports = {
                             call : {
                                 'A-1-1' : {
                                     call : function(_, promise) {
-                                        promise.resolve('A-1-1-result');
+                                        promise.fulfill('A-1-1-result');
                                     }
                                 }
                             }
@@ -51,7 +51,7 @@ module.exports = {
                                     return {
                                         'A-1-1' : {
                                             call : function(_, promise) {
-                                                promise.resolve('A-1-1-result');
+                                                promise.fulfill('A-1-1-result');
                                             }
                                         }
                                     };

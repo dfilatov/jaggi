@@ -13,7 +13,7 @@ module.exports = {
                 call : {
                     A : {
                         call : function(_, promise) {
-                            promise.resolve();
+                            promise.fulfill();
                         },
                         done : function() {
                             called = true;
@@ -50,7 +50,7 @@ module.exports = {
                     A : {
                         guard : false,
                         call : function(_, promise) {
-                            promise.resolve();
+                            promise.fulfill();
                         },
                         done : function() {
                             called = true;
@@ -69,7 +69,7 @@ module.exports = {
             call : {
                 A : {
                     call : function(_, promise) {
-                        promise.resolve({ ok : true });
+                        promise.fulfill({ ok : true });
                     },
                     done : false
                 }
@@ -85,7 +85,7 @@ module.exports = {
             call : {
                 A : {
                     call : function(_, promise) {
-                        promise.resolve({ ok : true });
+                        promise.fulfill({ ok : true });
                     },
                     done : function(_, _, promise) {
                         return false;
@@ -103,10 +103,10 @@ module.exports = {
             call : {
                 A : {
                     call : function(_, promise) {
-                        promise.resolve({ ok : true });
+                        promise.fulfill({ ok : true });
                     },
                     done : function(res, _, promise) {
-                        promise.resolve({ ok : false });
+                        promise.fulfill({ ok : false });
                     }
                 }
             }
@@ -121,7 +121,7 @@ module.exports = {
             call : {
                 A : {
                     call : function(_, promise) {
-                        promise.resolve('ok');
+                        promise.fulfill('ok');
                     },
                     done : function(_, _, promise) {
                         promise.reject('error');

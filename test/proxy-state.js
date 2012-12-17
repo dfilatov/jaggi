@@ -12,7 +12,7 @@ module.exports = {
             call : {
                 A : {
                     call : function(_, promise) {
-                        promise.resolve('A done');
+                        promise.fulfill('A done');
                     },
                     toState : {
                         'A-1-res' : '.'
@@ -26,7 +26,7 @@ module.exports = {
                                 stateParams = ctx.state().params();
                             },
                             call : function(_, promise) {
-                                promise.resolve('B-1 done');
+                                promise.fulfill('B-1 done');
                             }
                         }
                     }
@@ -43,7 +43,7 @@ module.exports = {
             call : {
                 A : {
                     call : function(_, promise) {
-                        promise.resolve('A done');
+                        promise.fulfill('A done');
                     },
                     toState : {
                         'A-1-res' : '.'
@@ -51,6 +51,7 @@ module.exports = {
                 },
 
                 B : {
+                    deps : 'A',
                     proxyState : true,
                     call : {
                         'B-1' : {
@@ -58,7 +59,7 @@ module.exports = {
                                 stateParams = ctx.state().params();
                             },
                             call : function(_, promise) {
-                                promise.resolve('B-1 done');
+                                promise.fulfill('B-1 done');
                             }
                         }
                     }

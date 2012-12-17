@@ -8,7 +8,7 @@ module.exports = {
                 call : {
                     A : {
                         call : function(_, promise) {
-                            promise.resolve('result');
+                            promise.fulfill('result');
                         }
                     }
                 }
@@ -24,7 +24,7 @@ module.exports = {
                 call : {
                     A : {
                         call : function(_, promise) {
-                            promise.resolve({ a : { b : { c : true }}});
+                            promise.fulfill({ a : { b : { c : true }}});
                         }
                     }
                 }
