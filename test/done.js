@@ -129,7 +129,7 @@ module.exports = {
                 }
             }
         }).run().then(function(res) {
-            test.deepEqual(res, { A : { error : { message : 'error' }}});
+            test.deepEqual(res, { A : { error : { message : 'Error: error' }}});
             test.done();
         });
     }

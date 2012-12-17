@@ -32,7 +32,7 @@ module.exports = {
                                 'A-1-1' : 'A-1-1-result'
                             },
                             'A-2' : {
-                                error : { message : 'A-2-error' }
+                                error : { message : 'Error: A-2-error' }
                             }
                         }
                     });
@@ -74,7 +74,7 @@ module.exports = {
                                 'A-1-1' : 'A-1-1-result'
                             },
                             'A-2' : {
-                                error : { message : 'A-2-error' }
+                                error : { message : 'Error: A-2-error' }
                             }
                         }
                     });
