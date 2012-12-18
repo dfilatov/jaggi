@@ -1,6 +1,6 @@
 {
     "name" : "jaggi",
-    "version" : "0.0.12",
+    "version" : "0.1.0",
     "description" : "aggregator",
     "homepage" : "https://github.com/dfilatov/jaggi",
     "keywords" : ["aggregator"],
@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "inherit"   : "1.0.4",
-        "jspromise" : "0.0.7",
+        "jspromise" : "0.0.9",
         "jspath"    : ""
     },
     "devDependencies": {
@@ -23,7 +23,7 @@
         "istanbul" : ""
     },
     "main" : "index",
-    "engines" : { "node" : ">= 0.4.0" },
+    "engines" : { "node" : ">= 0.6.0" },
     "scripts" : {
         "test" : "./node_modules/istanbul/lib/cli.js test test-runner.js"
     }

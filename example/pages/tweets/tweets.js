@@ -8,13 +8,17 @@ module.exports = {
                         trends : '.trends[:' + (ctx.request('limit') || 3)  + ']'
                     };
                 },
+                cache : {
+                    key : 'key',
+                    maxAge : 10000
+                },
                 done : false
             },
 
             'tweets' : {
                 deps : 'trends',
                 guard : 'trends',
-                timeout : 1000,
+                //timeout : 2000,
                 params : function(ctx) {
                     return { trends : ctx.state('trends') };
                 },
@@ -27,6 +31,10 @@ module.exports = {
                                 var res = this.__base();
                                 res.data = { q : trend.query };
                                 return res;
+                            },
+                            cache : {
+                                key    : trend.name,
+                                maxAge : 10000
                             },
                             pointer : '.results[:3].text'
                         }

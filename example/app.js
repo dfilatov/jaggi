@@ -22,7 +22,8 @@ require('./routes').forEach(function(rule) {
         runner
             .on('block-event', function(event, error) {
                 console.log(
-                    util.format('block %s %s', event.meta.id, event.type),
+                    util.format('block %s %s', event.meta.id, event.type) +
+                    (event.meta.cacheHit? ' (cache)' : ''),
                     (error && '-> ' + error.message) || '');
             })
             .run().then(function(res) {
