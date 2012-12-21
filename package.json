@@ -1,6 +1,6 @@
 {
     "name" : "jaggi",
-    "version" : "0.1.1",
+    "version" : "0.1.2",
     "description" : "aggregator",
     "homepage" : "https://github.com/dfilatov/jaggi",
     "keywords" : ["aggregator"],
@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "inherit"   : "1.0.4",
-        "jspromise" : "0.0.9",
+        "vow"       : "0.1.1",
         "jspath"    : ""
     },
     "devDependencies": {
