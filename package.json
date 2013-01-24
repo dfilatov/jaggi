@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "inherit"   : "1.0.4",
-        "vow"       : "0.1.7",
+        "vow"       : "0.1.8",
         "jspath"    : "0.2.9"
     },
     "devDependencies": {
