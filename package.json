@@ -15,8 +15,9 @@
     },
     "dependencies": {
         "inherit"   : "1.0.4",
-        "vow"       : "0.1.12",
-        "jspath"    : "0.2.9"
+        "vow"       : "0.2.6",
+        "jspath"    : "0.2.9",
+        "mongodb"   : "*"
     },
     "devDependencies": {
         "nodeunit" : "",
