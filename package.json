@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "inherit"   : "1.0.4",
-        "vow"       : "0.2.6",
+        "vow"       : "0.3.7",
         "jspath"    : "0.2.9",
         "mongodb"   : "*"
     },
